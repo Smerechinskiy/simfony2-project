@@ -1,0 +1,20 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    <img class="img" src="{{ asset('bundles/frontend/img/main_img.jpg') }}" />
+    <p class="text">Меню ресторана <b>BON APPETIT</b> наполнено легкими и сытными блюдами, в приготовлении которых, использованы продукты исключительно высокого качества. Всем знакомая европейская
+        кухня в оригинальной подаче от талантливого шеф-повара, богатое разнообразие вторых блюд,  а также освежающих напитков, авторские и классические десерты.</p>
+    <div class="address">
+        <address>
+                <strong>Ресторан "BON APPETIT"</strong><br>
+                Украина, 40000 г, Сумы<br>
+                ул. Островского, д.33<br>
+                <abbr title="Телефон">Тел:</abbr> +38(0542) 456-789
+            </address>
+
+            <address>
+                <strong>E-mail:</strong><br>
+                <a href="mailto:#">restaurant@bon-appetit.com</a>
+            </address>
+    </div>
+{% endblock %}

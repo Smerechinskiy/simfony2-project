@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" id="lost-form"  style="display:none;" >
+    <div class="modal-body">
+        <div id="div-lost-msg">
+            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+            <span id="text-lost-msg">Введите ваш e-mail или логин:</span>
+        </div>
+        <input id="lost_email" name="username" class="form-control" type="text" placeholder="e-mail или логин" required>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Отправить</button>
+        </div>
+        <div>
+            <button id="lost_login_btn" type="button" class="btn btn-link">Войти</button>
+            <button id="lost_register_btn" type="button" class="btn btn-link">Зарегистрироваться</button>
+        </div>
+    </div>
+</form>

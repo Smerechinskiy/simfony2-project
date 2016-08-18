@@ -1,0 +1,45 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+   {% if user.cartItems|length > 0 %}
+      <table class="table table-hover">
+      <tbody>
+      {% set amount = 0 %}
+      {% for cartItem in user.cartItems %}
+         {% set amount = amount + (cartItem.item.price * cartItem.quantity) %}
+         <tr class="cart-item remove-product" >
+            {% if cartItem.item.path %}
+               <td><img width="140px" src="{{ asset(cartItem.item.webPath) }}"></td>
+            {% else %}
+               <td><img width="140px" src="{{ asset('bundles/frontend/image/no-image.png') }}"></td>
+            {% endif %}
+            <td align="left">
+               <p><b>{{ cartItem.item.name }}</b></p>
+               <p>{{ cartItem.item.description }}</p>
+            </td>
+            <td width="120px" align="right">
+               <a class="minus" href="{{ path('frontend_change_quantity_item',{'id': cartItem.id}) }}">
+                  <i class="glyphicon glyphicon-minus"></i>
+               </a>
+               <input type="text" class="form-control quantity" value="{{ cartItem.quantity }}" disabled>
+               <a class="plus" href="{{ path('frontend_change_quantity_item',{'id': cartItem.id}) }}">
+                  <i class="glyphicon glyphicon-plus"></i>
+               </a>
+            </td>
+            <td width="100px" align="right"><b>{{ cartItem.item.price }}</b> грн.</td>
+            <td align="right">
+               <a class="remove-of-cart remove-product" href="{{ path('frontend_delete_item_of_cart',{'id': cartItem.id}) }}">
+                  <i class="glyphicon glyphicon-remove-circle"></i>
+               </a>
+            </td>
+         </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+      <p class="amount">Общая сумма заказа: <span class="color-price"><span class="amount">{{ amount }}</span> грн.</span></p>
+      <a href="{{ path('frontend_checkout') }}">
+         <button class="btn btn-success right">Продолжить</button>
+      </a>
+      {% else %} <h2>Корзина пуста</h2>
+   {% endif %}
+{% endblock %}

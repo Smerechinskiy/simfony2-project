@@ -1,0 +1,19 @@
+home_page:
+    path: /
+    defaults: { _controller: FrontendBundle:Home:index }
+
+frontend_categories:
+    resource: "@FrontendBundle/Resources/config/routing/category.yml"
+    prefix: /category
+
+frontend_cart:
+    resource: "@FrontendBundle/Resources/config/routing/cart.yml"
+    prefix: /cart
+
+frontend_dashboard:
+    resource: "@FrontendBundle/Resources/config/routing/dashboard.yml"
+    prefix: /dashboard
+
+frontend_order:
+    resource: "@FrontendBundle/Resources/config/routing/order.yml"
+    prefix: /order

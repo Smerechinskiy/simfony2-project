@@ -1,0 +1,60 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Богдан
+ * Date: 27.05.2016
+ * Time: 18:21
+ */
+
+// src/BackendBundle/Entity/Order.php
+namespace BackendBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BackendBundle\Entity\OrderItem
+ *
+ * @ORM\Table(name="oder_item")
+ * @ORM\Entity(repositoryClass="BackendBundle\Entity\OrderItemRepository")
+ */
+class OrderItem
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \BackendBundle\Entity\Order
+     *
+     * @ORM\ManyToOne(targetEntity="BackendBundle\Entity\Order")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    protected $order;
+    
+    /**
+     * @var integer $quantity
+     *
+     * @ORM\Column(type="integer", name="quantity", nullable=false)
+     */
+    private $quantity = 0;
+
+    /**
+     * @var \BackendBundle\Entity\Order
+     *
+     * @ORM\ManyToOne(targetEntity="BackendBundle\Entity\Product")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    protected $product;
+    
+
+}

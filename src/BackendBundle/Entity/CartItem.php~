@@ -1,0 +1,58 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Богдан
+ * Date: 15.06.2016
+ * Time: 17:26
+ */
+
+// src/BackendBundle/Entity/CartItem.php
+namespace BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BackendBundle\Entity\Product
+ *
+ * @ORM\Table(name="cart_item")
+ * @ORM\Entity(repositoryClass="BackendBundle\Entity\CartItemRepository")
+ * @ORM\HasLifecycleCallbacks
+ */
+class CartItem
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer $quantity
+     *
+     * @ORM\Column(type="integer", name="quantity", nullable=false)
+     */
+    private $quantity = 0;
+
+    /**
+     * @var \BackendBundle\Entity\Product
+     *
+     * @ORM\ManyToOne(targetEntity="BackendBundle\Entity\Product")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    protected $item;
+
+    /**
+     * @var \BackendBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="BackendBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    protected $user;
+}

@@ -1,0 +1,12 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3 style="text-align: center; color: #5cb85c">Поздравляем, Ваш заказ был успешно оформлен! </h3><br>
+    <p style="text-align: center">В ближайшее время с Вами свяжется менеджер для получения более точной информации </p>
+    <h4 style="text-align: center; color: #464646">Как принято у нас, желаем Вам <b>Bone Appetit!</b></h4><br>
+    <div style="text-align: center">
+        <a href="{{ path('home_page') }}">
+            <button class="btn btn-success">Продолжить покупки?</button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+frontend_order_page:
+    path: /
+    defaults: { _controller: FrontendBundle:Order:index }
+
+frontend_checkout:
+    path: /checkout
+    defaults: { _controller: FrontendBundle:Order:formCheckout }
+
+frontend_order_confirm_page:
+    path: /confirm
+    defaults: { _controller: FrontendBundle:Order:orderConfirm }

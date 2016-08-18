@@ -1,0 +1,40 @@
+{% extends "BackendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Cписок категорий</h3>
+    <a href="{{ path('admin_category_create') }}">
+        <button class="button btn-create" title="Создать новую категорию"><i class="glyphicon glyphicon-plus"></i>   Создать</button>
+    </a>
+    {% if categories|length > 0 %}
+    <table class="table backend table-hover">
+        <thead>
+            <tr class="grey">
+                <th width="150">Название</th>
+                <th>Описание</th>
+                <th width="40"></th>
+                <th width="40"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td><b>{{ category.name }}</b></td>
+                <td>{{ category.description }}</td>
+                <td align="right">
+                    <a class="edit" href="{{ path('admin_category_edit',{'id': category.id}) }}" title="Редактировать категорию">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </td>
+                <td align="right">
+                    <a class="delete" href="{{ path('admin_category_delete',{'id': category.id}) }}" title="Удалить категорию">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+            </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+        {% else %}
+            <div class="alert alert-info">Cписок категорий пуст</div>
+        {% endif %}
+{% endblock %}

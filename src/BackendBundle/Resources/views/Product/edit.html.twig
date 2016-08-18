@@ -1,0 +1,29 @@
+{% extends "BackendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Редактирование товара</h3>
+    <a href="{{ path('admin_products_page') }}">
+        <button class="button btn-ago" title="Вернуться к списку товаров">
+            <i class="glyphicon glyphicon-arrow-left"></i>  Вернуться
+        </button>
+    </a>
+    {% if product.path %}
+    <img class="product" src="{{ asset(product.webPath) }}">
+    {% else %}
+    <img class="product" src="{{ asset('bundles/backend/image/no-image.png') }}">
+    {% endif %}
+    <div class="well">
+        <div class="product">
+            {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.category) }}
+                {{ form_row(form.quantity) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.button) }}
+                {{ form_row(form._token) }}
+                {{ form_row(form.file) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,399 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    padding-top: 70px;
+    padding-right: 0 !important;
+    margin: 0;
+    position: relative;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.nav>li>a {
+    padding-left: 9px;
+}
+
+.address {
+    float: right;
+    margin-top: 30px;
+    text-align: right;
+}
+
+address {
+    font-style: italic;
+}
+
+.text {
+    margin-top: 19px;
+}
+
+p.text:first-letter {
+    color: #5cb85c;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.img {
+    width: 100%;
+}
+
+#login-modal .modal-dialog {
+    width: 350px;
+}
+#login-modal input[type=text], input[type=password] {
+    margin-top: 10px;
+}
+#div-login-msg,
+#div-lost-msg,
+#div-register-msg {
+    border: 1px solid #dadfe1;
+    height: 30px;
+    line-height: 28px;
+    transition: all ease-in-out 500ms;
+}
+#div-login-msg.success,
+#div-lost-msg.success,
+#div-register-msg.success {
+    border: 1px solid #68c3a3;
+    background-color: #c8f7c5;
+}
+#div-login-msg.error,
+#div-lost-msg.error,
+#div-register-msg.error {
+    border: 1px solid #eb575b;
+    background-color: #ffcad1;
+}
+#icon-login-msg,
+#icon-lost-msg,
+#icon-register-msg {
+    width: 30px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    background-color: #dadfe1;
+    margin-right: 5px;
+    transition: all ease-in-out 500ms;
+}
+#icon-login-msg.success,
+#icon-lost-msg.success,
+#icon-register-msg.success {
+    background-color: #68c3a3 !important;
+}
+#icon-login-msg.error,
+#icon-lost-msg.error,
+#icon-register-msg.error {
+    background-color: #eb575b !important;
+}
+
+#form-logo {
+    font-size: -webkit-xxx-large;
+    color: #949492;
+}
+/* #########################################
+   #    Переопределяем настройки bootstrap #
+   ######################################### */
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
+}
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0;
+    outline: 0;
+}
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 0;
+}
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
+}
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    text-align: left;
+    border-top: 0;
+}
+.checkbox {
+    margin-bottom: 0;
+}
+.btn {
+    border-radius: 0;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+.btn-lg, .btn-group-lg>.btn {
+    border-radius: 0;
+}
+.btn-link {
+    padding: 5px 10px 0 0;
+    color: #95a5a6;
+}
+.btn-link:hover, .btn-link:focus {
+    color: #2c3e50;
+    text-decoration: none;
+}
+.glyphicon {
+    top: 0;
+}
+.form-control {
+    border-radius: 0;
+}
+
+#modal-item div.modal-dialog {
+    width: 366px;
+    text-align: center;
+}
+
+#modal-item div.modal-content {
+    background-color: #ffffff;
+}
+
+#modal-item div.modal-footer {
+    text-align: center;
+}
+
+abbr[title] {
+    border-bottom: none;
+}
+
+a.cart {
+    margin-right: 25px;
+    float: right;
+}
+
+img.cart{
+    margin-top: 6px;
+    max-width: 38px;
+    float: right;
+    margin-bottom: 7px;
+}
+
+img.product {
+    width: 100%;
+}
+
+p.count-item {
+    width: 30px;
+    position: absolute;
+    padding-left: 13px;
+    padding-top: 9px;
+    color: #ffffff;
+    font-size: 15px;
+    font-style: italic;
+    text-align: center;
+}
+
+a.button-login {
+    margin-top: 8px;
+    margin-right: -7px;
+    float: right;
+}
+
+a.button-logout {
+    margin-top: 8px;
+    margin-right: -7px;
+    float: right;
+}
+
+i.glyphicon {
+    margin-right: 3px;
+}
+
+i.glyphicon-cutlery {
+    font-size: 25px;
+}
+
+button.btn-primary {
+    float: right;
+    margin-bottom: 9px;
+    margin-right: 5px;
+}
+
+div.well {
+    height: 435px;
+    position: relative;
+}
+
+div.price {
+    position: absolute;
+    margin-bottom: 3px;
+    bottom: 0px;
+    width: 90%;
+}
+
+div.product {
+    max-width: 390px;
+}
+
+
+.logo {
+    float: right;
+    color: #ffffff;
+    margin-left: 6px;
+    margin-top: -4px;
+}
+
+button.shopping-cart {
+    float: right;
+    color: #616161;
+    background-color: #d4d4d4;
+}
+
+button.shopping-cart:hover {
+    background-color: #5cb85c;
+    color: #ffffff;
+}
+
+.product-quantity {
+    position: absolute;
+    right: 0;
+    margin-right: 33px;
+    font-size: 13px;
+    margin-top: 7px;
+    color: #ffffff;
+    width: 39px;
+    text-align: center;
+}
+
+.product-name {
+    margin-top: 7px;
+    font-size: initial
+}
+
+.product-price {
+    float: left;
+    font-size: 24px;
+    color: #5cb85c;
+}
+
+.product-description {
+    display: block;
+    overflow: hidden;
+    height: 57px;
+}
+
+.product-description:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 46px;
+    height: 12px;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), #f5f5f5 100%, #f5f5f5 10%, #f5f5f5);
+}
+
+div.product i.glyphicon-bookmark:before {
+    content: "\e044";
+    font-size: 54px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 28px;
+    font-style: normal;
+    margin-top: 5px;
+    color: #5cb85c;
+    font-family: 'Glyphicons Halflings';
+}
+
+a.remove-of-cart {
+    color: #9c9c9c;
+    font-size: 20px;
+}
+
+a.remove-of-cart :hover {
+    color: #ff240b;
+}
+
+table>tbody>tr.cart-item>td {
+    vertical-align: middle;
+    padding: 4px;
+    border-top: 1px solid #efefef;
+}
+
+p.amount {
+    text-align: right;
+    font-size: 20px;
+    color: #c7c5c5;
+    background-color: #222222;
+    margin-top: -13px;
+    padding: 3px 6px 3px 0;
+}
+
+span.color-price {
+    color: #5cb85c;
+}
+
+button.btn-default {
+    float: right;
+    margin-left: 7px;
+}
+
+button.right {
+    float: right;
+}
+
+input.form-control.quantity {
+    width: 34px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 7px;
+    float: left;
+    background-color: #FFFFFF;
+    cursor: text;
+    padding: 0 4px 0 4px;
+}
+
+a.minus, a.plus {
+    color: #9c9c9c;
+    float: left;
+    padding-top: 9px;
+}
+
+a.minus :hover, a.plus :hover {
+    color: #000;
+    cursor: pointer;
+}
+
+table>thead>tr.grey>th {
+    background-color: #676767;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #FFFFFF;
+    border: none;
+}
+
+p.status>i.active, td>i.active {
+    font-size: 21px;
+    color: #5cb85c;
+}
+
+i.glyphicon-ok-sign {
+    font-size: 21px;
+    color: #cccccc;
+}
+
+button.dashboard {
+    margin-top: -60px;
+}
+
+button.dashboard-logout {
+    margin-top: -60px;
+    margin-right: 145px;
+}

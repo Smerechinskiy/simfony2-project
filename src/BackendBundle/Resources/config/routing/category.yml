@@ -1,0 +1,15 @@
+admin_categories_page:
+    path: /
+    defaults: { _controller: BackendBundle:Category:index }
+
+admin_category_delete:
+    path: /{id}/delete
+    defaults: { _controller: BackendBundle:Category:delete }
+
+admin_category_edit:
+    path: /{id}/edit
+    defaults: { _controller: BackendBundle:Category:formEdit }
+
+admin_category_create:
+    path: /create
+    defaults: { _controller: BackendBundle:Category:formCreate }

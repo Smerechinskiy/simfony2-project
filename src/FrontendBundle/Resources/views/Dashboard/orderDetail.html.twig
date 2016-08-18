@@ -1,0 +1,38 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    {% if order.items|length > 0 %}
+        <table class="table table-hover">
+            <thead>
+            <tr class="grey">
+                <th></th>
+                <th>Название товара</th>
+                <th>Кол-во порций</th>
+                <th>Стоимость</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set amount = 0 %}
+            {% for orderItem in order.items %}
+                {% set amount = amount + (orderItem.product.price * orderItem.quantity) %}
+                <tr class="cart-item remove-product" >
+                    <td>
+                        {% if orderItem.product.path %}
+                            <img width="140px" src="{{ asset(orderItem.product.webPath) }}">
+                        {% else %}
+                            <img width="140px" src="{{ asset('bundles/backend/image/no-image.png') }}">
+                        {% endif %}
+                    </td>
+                    <td align="left">
+                        <p><b>{{ orderItem.product.name }}</b></p>
+                        <p>{{ orderItem.product.description }}</p>
+                    </td>
+                    <td align="center">{{ orderItem.quantity }}</td>
+                    <td align="center"><b>{{ orderItem.product.price }}</b> грн.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p class="amount">Общая сумма заказа: <span class="color-price"><span class="amount">{{ amount }}</span> грн.</span></p>
+    {% endif %}
+{% endblock %}

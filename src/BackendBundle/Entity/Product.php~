@@ -1,0 +1,116 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Богдан
+ * Date: 27.05.2016
+ * Time: 18:21
+ */
+
+// src/BackendBundle/Entity/Product.php
+namespace BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+
+/**
+ * BackendBundle\Entity\Product
+ *
+ * @ORM\Table(name="product")
+ * @ORM\Entity(repositoryClass="BackendBundle\Entity\ProductRepository")
+ */
+class Product
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer $quantity
+     *
+     * @ORM\Column(name="quantity", nullable=false)
+     */
+    private $quantity = 0;
+
+    /**
+     * @var float $price
+     *
+     * @ORM\Column(name="price", type="decimal", scale=2, nullable=false)
+     */
+    private $price = 0;
+
+    /**
+     * @var \BackendBundle\Entity\Category
+     *
+     * @ORM\ManyToOne(targetEntity="BackendBundle\Entity\Category")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     * })
+     */
+    protected $category;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $path;
+
+    /**
+     * Image thumbnail
+     *
+     * @var File
+     *
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"},
+     *     maxSizeMessage = "Размер файла не должен привышать 5MB.",
+     *     mimeTypesMessage = "Формат файла не поддерживается. Выберите файл с расширением (jpeg, gif, png, tiff)."
+     * )
+     */
+    public $file;
+
+    
+    public function getAbsolutePath()
+    {
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // абсолютный путь к каталогу, куда будут сохраняться загруженные документы
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        //избавьтесь от __ DIR __, так чтобы его не было, когда отображался загруженный документ/изображение
+        return 'uploads/products';
+    }
+
+
+    
+
+}

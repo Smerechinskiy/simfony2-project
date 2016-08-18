@@ -1,0 +1,7 @@
+admin_export_orders:
+    path: /orders
+    defaults: { _controller: BackendBundle:Export:exportOrders }
+
+admin_export_products:
+    path: /products
+    defaults: { _controller: BackendBundle:Export:exportProducts }

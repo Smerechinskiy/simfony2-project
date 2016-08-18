@@ -1,0 +1,15 @@
+admin_orders_page:
+    path: /
+    defaults: { _controller: BackendBundle:Order:index }
+
+admin_order_detail_page:
+    path: /detail/{id}
+    defaults: { _controller: BackendBundle:Order:orderDetail }
+
+admin_order_change_status:
+    path: /{id}/change/status
+    defaults: { _controller: BackendBundle:Order:changeStatus }
+
+#admin_orders_export:
+#    path: /export
+#    defaults: { _controller: BackendBundle:Order:ordersExport }

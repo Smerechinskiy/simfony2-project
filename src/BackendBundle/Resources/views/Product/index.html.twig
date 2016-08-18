@@ -1,0 +1,57 @@
+{% extends "BackendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Cписок продуктов</h3>
+    <a href="{{ path('admin_product_create') }}">
+        <button class="button btn-create" title="Создать новый товар">
+            <i class="glyphicon glyphicon-plus"></i>   Создать
+        </button>
+    </a>
+    {% if products|length > 0 %}
+    <a href="{{ path('admin_export_products') }}">
+        <button class="button btn-products-export" title="Экспорт товаров">
+            <i class="glyphicon glyphicon-export"></i>   Экспорт
+        </button>
+    </a>
+    <table class="table backend table-hover">
+        <thead>
+        <tr class="grey">
+            <th width="150">Название</th>
+            <th>Описание</th>
+            <th>Категория</th>
+            <th>Порция</th>
+            <th>Цена</th>
+            <th width="40"></th>
+            <th width="40"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><b>{{ product.name }}</b></td>
+                <td>{{ product.description }}</td>
+                {%  if product.category.name is defined %}
+                <td>{{ product.category.name }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td align="center">{{ product.quantity }} гр.</td>
+                <td align="center">{{ product.price }}</td>
+                <td>
+                    <a class="edit" href="{{ path('admin_product_edit',{'id': product.id}) }}" title="Редактировать товар">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </td>
+                <td align="right">
+                    <a class="delete" href="{{ path('admin_product_delete',{'id': product.id}) }}" title="Удалить товар">
+                       <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info">Cписок товаров пуст</div>
+    {% endif %}
+{% endblock %}

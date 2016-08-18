@@ -1,0 +1,52 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Богдан
+ * Date: 27.05.2016
+ * Time: 18:21
+ */
+
+// src/BackendBundle/Entity/Category.php
+namespace BackendBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BackendBundle\Entity\Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="BackendBundle\Entity\CategoryRepository")
+ */
+class Category
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="BackendBundle\Entity\Product", mappedBy="category")
+     */
+    private $products;
+}

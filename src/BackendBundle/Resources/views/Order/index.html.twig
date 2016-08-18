@@ -1,0 +1,53 @@
+{% extends "BackendBundle::layout.html.twig" %}
+
+{% block content %}
+<h3>Список заказов</h3>
+{% if  orders|length > 0 %}
+    <a href="{{ path('admin_export_orders') }}">
+        <button class="button btn-orders-export" title="Экспорт заказов">
+            <i class="glyphicon glyphicon-export"></i>   Экспорт
+        </button>
+    </a>
+    <table class="table backend table-hover">
+        <thead>
+        <tr class="grey">
+            <th>Номер заказа</th>
+            <th>Дата</th>
+            <th>Имя пользователя</th>
+            <th>Город</th>
+            <th>Адрес доставки</th>
+            <th>Cтатус</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+        {% set dateTime = date(order.created) %}
+            <tr>
+                <td align="center"><b>{{ order.id }}</b></td>
+                <td align="center">{{ dateTime | date('H:i:s') }} / {{ dateTime | date('d-m-y') }}</td>
+                <td align="center">{{ order.name }}</td>
+                <td align="center">{{ order.city }}</td>
+                <td align="center">{{ order.address }}</td>
+                {% if order.status == 0 %}
+                <td align="center">
+                    <i class="glyphicon glyphicon-ok-sign" title="На утверждении"></i>
+                </td>
+                {% else %}
+                <td align="center">
+                    <i class="active glyphicon glyphicon-ok-sign" title="Подтвержден"></i>
+                </td>
+                {% endif %}
+                <td align="right">
+                    <a href="{{ path('admin_order_detail_page',{'id': order.id}) }}">
+                        <button class="button btn-success">Подробней</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-info">На данный момент заказов нет</div>
+{% endif %}
+{% endblock %}

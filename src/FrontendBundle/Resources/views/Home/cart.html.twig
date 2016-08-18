@@ -1,0 +1,15 @@
+{% if user is defined %}
+    {% if user.cartitems|length > 0 %}
+        <a class="cart" href="{{ path('frontend_cart_page') }}">
+            <img class="cart" src="{{ asset('bundles/frontend/img/cart.png') }}" /><p class="count-item">{{ user.cartitems|length }}</p>
+        </a>
+    {% else %}
+        <a class="cart" href="{{ path('frontend_cart_page') }}">
+            <img class="cart" src="{{ asset('bundles/frontend/img/cart.png') }}" /><p class="count-item"></p>
+        </a>
+    {% endif %}
+{% else %}
+    <a class="cart" href="{{ path('frontend_cart_page') }}">
+        <img class="cart" src="{{ asset('bundles/frontend/img/cart.png') }}" /><p class="count-item"></p>
+    </a>
+{% endif %}

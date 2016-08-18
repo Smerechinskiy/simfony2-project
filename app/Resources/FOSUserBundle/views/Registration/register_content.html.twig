@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_registration_register') }}" method="POST" id="register-form" style="display:none;">
+    <div class="modal-body">
+        <div id="div-register-msg">
+            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+            <span id="text-register-msg">Регистрация аккаунта</span>
+        </div>
+        {{ form_row(form._token) }}
+        {{ form_errors(form.username) }}
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.plainPassword.first) }}
+        {{ form_errors(form.plainPassword.second) }}
+        <input id="register_email" name="fos_user_registration_form[email]" class="form-control" type="text" placeholder="E-Mail" required>
+        <input id="register_username" name="fos_user_registration_form[username]" class="form-control" type="text" placeholder="Логин" required>
+        <input id="register_password" name="fos_user_registration_form[plainPassword][first]" class="form-control" type="password" placeholder="Пароль" required>
+        <input id="register_password_confirmation" name="fos_user_registration_form[plainPassword][second]" class="form-control" type="password" placeholder="Подтвердите пароль" required>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Зарегистрироваться</button>
+        </div>
+        <div>
+            <button id="register_login_btn" type="button" class="btn btn-link">Войти</button>
+            <button id="register_lost_btn" type="button" class="btn btn-link">Забыли пароль?</button>
+        </div>
+    </div>
+</form>
+
+{#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
+    {#{{ form_widget(form) }}#}
+    {#<div>#}
+        {#<input type="submit" value="{{ 'registration.submit'|trans }}" />#}
+    {#</div>#}
+{#{{ form_end(form) }}#}

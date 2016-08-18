@@ -1,0 +1,15 @@
+frontend_cart_page:
+    path: /
+    defaults: { _controller: FrontendBundle:Cart:index }
+
+frontend_add_to_cart:
+    path: /{id}/add
+    defaults: { _controller: FrontendBundle:Cart:addToCart }
+
+frontend_delete_item_of_cart:
+    path: /{id}/delete
+    defaults: { _controller: FrontendBundle:Cart:deleteOfCart }
+
+frontend_change_quantity_item:
+    path: /{id}/change_quantity
+    defaults: { _controller: FrontendBundle:Cart:changeQuantity }

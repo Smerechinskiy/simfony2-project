@@ -1,0 +1,24 @@
+﻿Список заказов:
+{% for order in data %}
+{% set dateTime = date(order.created) %}
+    № заказа: {{ order.id }}
+    Дата создания заказа: {{ dateTime | date('H:i:s') }} / {{ dateTime | date('d-m-y')  }}
+    Имя покупателя: {{ order.name }}
+    Номер телефона: {{ order.telephone }}
+    E-mail: {{ order.user.email }}
+    Адрес доставки: г.{{ order.city }}, {{ order.address }}
+    Коментарий: {{ order.annotation }}
+    Продукты:
+    {% set amount = 0 %}
+    {% for orderItem in order.items %}
+    {% set amount = amount + (orderItem.quantity * orderItem.product.price) %}
+    Название: {{ orderItem.product.name }}
+            Порция: {{ orderItem.product.quantity }} г.
+            Кол-во порций: {{ orderItem.quantity }}
+            Стоимость: {{ orderItem.product.price }} грн.
+
+    {% endfor %}
+Общая сумма заказа: {{ amount }} грн.
+
+
+{% endfor %}

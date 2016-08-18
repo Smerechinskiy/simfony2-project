@@ -1,0 +1,19 @@
+admin_products_page:
+    path: /
+    defaults: { _controller: BackendBundle:Product:index }
+
+admin_product_delete:
+    path: /{id}/delete
+    defaults: { _controller: BackendBundle:Product:delete }
+
+admin_product_edit:
+    path: /{id}/edit
+    defaults: { _controller: BackendBundle:Product:formEdit }
+
+admin_product_create:
+    path: /create
+    defaults: { _controller: BackendBundle:Product:formCreate }
+
+#admin_products_export:
+#    path: /export
+#    defaults: { _controller: BackendBundle:Product:productsExport }

@@ -1,0 +1,54 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h2>{{ category.name }} </h2><br>
+    <div class="row">
+    {% if products %}
+    {% for product in products %}
+        <div class="product col-sm-6 col-md-4 col-lg-4 clearfix">
+            <div class="well clearfix">
+                <div class="product clearfix">
+                    <i class="glyphicon-bookmark"></i>
+                    <p class="product-quantity"><b>{{ product.quantity }} г.</b></p>
+                    {% if product.path %}
+                        <img class="product" src="{{ asset(product.webPath) }}"><br>
+                    {% else %}
+                        <img class="product" src="{{ asset('bundles/frontend/image/no-image.png') }}"><br>
+                    {% endif %}
+                    <p class="product-name"><b>{{ product.name }}</b></p>
+                    <p  class="product-description"><abbr title="{{ product.description }}">{{ product.description }}</abbr></p>
+                </div>
+                <div class="price clearfix">
+                    <p class="product-price">{{ product.price }} грн.</p>
+                    <a class="add-to-cart" href="{{ path('frontend_add_to_cart',{'id': product.id}) }}">
+                        <button class="btn shopping-cart"><i class="glyphicon glyphicon-shopping-cart"></i>Заказать</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+        <div class="alert alert-info">На данный момент в этой категории нет товаров, зайдите пожалуйста позднее</div>
+    {% endif %}
+    </div>
+    <div id="modal-item" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Заголовок модального окна -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <!-- Основное содержимое модального окна -->
+                <div class="modal-body">
+                    Товар был успешно добавлен в корзину
+                </div>
+                <!-- Футер модального окна -->
+                <div class="modal-footer">
+                    <a href="{{ path('frontend_cart_page') }}">
+                    <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-shopping-cart"></i> Перейти в корзину</button>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

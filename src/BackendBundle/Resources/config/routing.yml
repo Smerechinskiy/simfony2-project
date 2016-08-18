@@ -1,0 +1,19 @@
+admin_page:
+    path: /
+    defaults: { _controller: BackendBundle:Order:index }
+
+admin_categories:
+    resource: "@BackendBundle/Resources/config/routing/category.yml"
+    prefix: /category
+
+admin_products:
+    resource: "@BackendBundle/Resources/config/routing/product.yml"
+    prefix: /product
+
+admin_orders:
+    resource: "@BackendBundle/Resources/config/routing/order.yml"
+    prefix: /order
+
+admin_export:
+    resource: "@BackendBundle/Resources/config/routing/export.yml"
+    prefix: /export

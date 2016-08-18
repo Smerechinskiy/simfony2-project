@@ -1,0 +1,11 @@
+﻿{% for category in data %}
+{{ category.name }}:
+    {% for product in category.products %}
+    Название: {{ product.name }}
+        Описание: {{ product.description }}
+        Порция: {{ product.quantity }}г.
+        Цена: {{ product.price }}грн.
+
+    {% endfor %}
+
+{% endfor %}

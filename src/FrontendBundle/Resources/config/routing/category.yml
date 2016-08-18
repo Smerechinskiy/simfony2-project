@@ -1,0 +1,3 @@
+frontend_category_page:
+    path: /{id}
+    defaults: { _controller: FrontendBundle:Category:category }

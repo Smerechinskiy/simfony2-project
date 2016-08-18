@@ -1,0 +1,7 @@
+frontend_dashboard_page:
+    path: /
+    defaults: { _controller: FrontendBundle:Dashboard:index }
+
+frontend_dashboard_order_detail_page:
+    path: /order/{id}
+    defaults: { _controller: FrontendBundle:Dashboard:orderDetail }

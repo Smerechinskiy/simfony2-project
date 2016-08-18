@@ -1,0 +1,50 @@
+{% extends "FrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Личный кабинет пользователя <b>{{ user.username }}</b></h3><br>
+    <a href="{{ path('fos_user_security_logout') }}">
+        <button class="btn btn-default dashboard"><i class="glyphicon glyphicon-user"></i>Разлогиниться</button>
+    </a>
+    {% if app.user.admin %}
+        <a href="{{ path('admin_page') }}">
+            <button class="btn btn-default dashboard-logout"><i class="glyphicon glyphicon-user"></i>Панель администрирования</button>
+        </a>
+    {% endif %}
+    {% if  user.orders|length > 0 %}
+        <table class="table backend table-hover">
+            <thead>
+            <tr class="grey">
+                <th>Номер заказа</th>
+                <th>Дата</th>
+                <th>Город</th>
+                <th>Адрес доставки</th>
+                <th>Комментарий</th>
+                <th>Cтатус заказа</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in user.orders %}
+                {% set dateTime = date(order.created) %}
+                <tr>
+                    <td align="center"><b>{{ order.id }}</b></td>
+                    <td align="center">{{ dateTime | date('H:i:s') }} / {{ dateTime | date('d-m-y') }}</td>
+                    <td align="center">{{ order.city }}</td>
+                    <td align="center">{{ order.address }}</td>
+                    <td align="center">{{ order.annotation }}</td>
+                    {% if order.status == 0 %}
+                        <td align="center">
+                            <i class="glyphicon glyphicon-ok-sign" title="На утверждении"></i>
+                        </td>
+                    {% else %}
+                        <td align="center">
+                            <i class="active glyphicon glyphicon-ok-sign" title="Подтвержден"></i>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>На данный момент у Вас нет оформленных заказов</p>
+    {% endif %}
+{% endblock %}

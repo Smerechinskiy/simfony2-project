@@ -1,0 +1,84 @@
+{% extends "BackendBundle::layout.html.twig" %}
+
+{% block content %}
+    <h3>Заказ №{{ order.id }}</h3>
+    <a href="{{ path('admin_orders_page') }}">
+        <button class="button btn-order-ago" title="Вернуться к списку заказов">
+            <i class="glyphicon glyphicon-arrow-left"></i>  Вернуться
+        </button>
+    </a>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#panel1">Общие сведения</a></li>
+        <li><a data-toggle="tab" href="#panel2">Доставка</a></li>
+        <li><a data-toggle="tab" href="#panel3">Товары</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="panel1" class="tab-pane fade in active">
+            <div class="well clearfix">
+                {% set dateTime = date(order.created) %}
+                <p><b>Дата заказа:</b> {{ dateTime | date('d-m-y') }} </p>
+                <p><b>Время заказа:</b> {{ dateTime | date('H:i:s') }} </p><br>
+                <p><b>Имя покупателя:</b> {{ order.name }} </p>
+                <p><b>Телефон:</b> {{ order.telephone }} </p>
+                <p><b>E-mail:</b> {{ order.user.email }} </p><br>
+                <p class="status"><b>Cтатус заказа:</b>
+                    {% if order.status == 0 %}
+                    <i class="glyphicon glyphicon-ok-sign" title="На утверждении"></i>
+                    {% else %}
+                    <i class="active glyphicon glyphicon-ok-sign" title="Подтвержден"></i>
+                    {% endif %}
+                <div class="radio" data-href="{{ path('admin_order_change_status', {'id': order.id}) }}">
+                    <label><input class="status" type="radio" name="optradio" value="1"{% if order.status == 1 %} checked{% endif %}>Подтвержден</label>
+                    <label><input class="status" type="radio" name="optradio" value="0"{% if order.status == 0 %} checked{% endif %}>Не подтвержден</label>
+                </div>
+                </p>
+            </div>
+        </div>
+        <div id="panel2" class="tab-pane fade">
+            <div class="well">
+                <p><b>Город:</b> {{ order.city }} </p>
+                <p><b>Адрес:</b> {{ order.address }} </p>
+                <p><b>Коментарий:</b> {{ order.annotation }} </p>
+            </div>
+        </div>
+        <div id="panel3" class="tab-pane fade">
+            <div class="well">
+                {% if order.items|length > 0 %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="grey">
+                            <th></th>
+                            <th>Название товара</th>
+                            <th>Кол-во порций</th>
+                            <th>Стоимость</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% set amount = 0 %}
+                    {% for orderItem in order.items %}
+                    {% set amount = amount + (orderItem.product.price * orderItem.quantity) %}
+                        <tr class="cart-item remove-product" >
+                            <td>
+                            {% if orderItem.product.path %}
+                                <img width="140px" src="{{ asset(orderItem.product.webPath) }}">
+                            {% else %}
+                                <img width="140px" src="{{ asset('bundles/backend/image/no-image.png') }}">
+                            {% endif %}
+                            </td>
+                            <td align="left">
+                                <p><b>{{ orderItem.product.name }}</b></p>
+                                <p>{{ orderItem.product.description }}</p>
+                            </td>
+                            <td align="center">{{ orderItem.quantity }}</td>
+                            <td align="center"><b>{{ orderItem.product.price }}</b> грн.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <p class="amount">Общая сумма заказа: <span class="color-price"><span class="amount">{{ amount }}</span> грн.</span></p>
+                {% else %} <h2>Cписок заказов пуст</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
